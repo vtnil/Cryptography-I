@@ -50,6 +50,7 @@ def decrypt(question, mode):
 
     else:
         for i in range(0, ceil(len(ct) / BLOCK_SIZE)):
+            # Be careful!!! Here is ENCRYPT!!
             _k = cipher.encrypt((int.from_bytes(iv, 'big') + i).to_bytes(BLOCK_SIZE, 'big'))
             _b = ct[BLOCK_SIZE * i: BLOCK_SIZE * (i + 1)]
             plain += [_k[i] ^ _b[i] for i in range(0, len(_b))]
